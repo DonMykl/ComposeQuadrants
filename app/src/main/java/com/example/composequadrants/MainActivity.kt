@@ -1,11 +1,14 @@
 package com.example.composequadrants
 
+import androidx.compose.ui.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -31,9 +34,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                     ) {
-                    Quadrants(modifier = Modifier.padding(8.dp), title = stringResource(
-                        id = R.string.text_composable_text), 
-                        description = stringResource(id = R.string.text_description_text))
+                    DisplayQuadrants()
                 }
             }
         }
@@ -41,9 +42,15 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Quadrants(modifier: Modifier = Modifier, title: String, description: String) {
+fun Quadrants(
+    modifier: Modifier = Modifier,
+    title: String,
+    description: String,
+    backgroundColor: Color) {
     Column (
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxSize()
+            .background(backgroundColor),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
@@ -59,11 +66,29 @@ fun Quadrants(modifier: Modifier = Modifier, title: String, description: String)
     }
 }
 
+@Composable
+fun DisplayQuadrants(modifier: Modifier = Modifier) {
+    Row(modifier.fillMaxSize()){
+        Quadrants(
+            title = stringResource(id = R.string.text_composable_text),
+            description = stringResource(id = R.string.text_composable_description),
+            backgroundColor = Color(0xFFEADDFF),
+            modifier = Modifier.weight(1f)
+        )
+    }
+
+
+
+
+}
+
+
+
 @Preview(showBackground = true)
 @Composable
-fun QuadrantPreview() {
+fun DisplayQuadrantsPreview() {
     ComposeQuadrantsTheme {
-        Quadrants( title = "Text Composable" , description = "Displays text and follows the recommended Material Design guidelines." )
+        DisplayQuadrants()
     }
 }
 
