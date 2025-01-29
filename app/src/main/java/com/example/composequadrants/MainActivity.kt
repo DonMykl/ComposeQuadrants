@@ -50,7 +50,8 @@ fun Quadrants(
     Column (
         modifier = modifier
             .fillMaxSize()
-            .background(backgroundColor),
+            .background(backgroundColor)
+            .padding(all = 16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
@@ -68,19 +69,36 @@ fun Quadrants(
 
 @Composable
 fun DisplayQuadrants(modifier: Modifier = Modifier) {
-    Row(modifier.fillMaxSize()){
-        Quadrants(
-            title = stringResource(id = R.string.text_composable_text),
-            description = stringResource(id = R.string.text_composable_description),
-            backgroundColor = Color(0xFFEADDFF),
-            modifier = Modifier.weight(1f)
-        )
+    Column (Modifier.fillMaxSize()) {
+        Row(Modifier.weight(1f)){
+            Quadrants(
+                title = stringResource(id = R.string.text_composable_text),
+                description = stringResource(id = R.string.text_composable_description),
+                backgroundColor = Color(0xFFEADDFF),
+                modifier = Modifier.weight(1f)
+            )
+            Quadrants(
+                title = stringResource(id = R.string.image_composable_text),
+                description = stringResource(id = R.string.image_composable_description) ,
+                backgroundColor = Color(0xFFD0BCFF),
+                modifier = Modifier.weight(1f))
+        }
+        Row(Modifier.weight(1f)){
+                Quadrants(
+                    title = stringResource(R.string.row_composable_text),
+                    description = stringResource(R.string.row_composable_description),
+                    backgroundColor = Color(0xFFB69DF8),
+                    modifier = modifier.weight(1f))
+            Quadrants(
+                title = stringResource(R.string.column_composable_text),
+                description = stringResource(R.string.column_composable_description),
+                backgroundColor = Color(0xFFF6EDFF),
+                modifier = modifier.weight(1f))
+            }
+        }
+
     }
 
-
-
-
-}
 
 
 
